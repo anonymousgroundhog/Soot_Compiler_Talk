@@ -1,26 +1,27 @@
 /**
  * @param args
  */
+
 public static void main(String[] args) {
- PackManager.v().getPack("jtp").add(new Transform("jtp.fixedie", new BodyTransformer() {
-  @Override
-  protected void internalTransform(Body b, String phaseName, Map<String, String> options) {
-   for (Unit u : b.getUnits()) {
-    Stmt s = (Stmt) u;
-    if (s.containsInvokeExpr()) {
-     InvokeExpr ie = s.getInvokeExpr();
-     if (FixedMethods.isFixed(ie)) {
-      System.err.println("+++ " + ie);
-      yes++;
-     } else {
-      System.err.println(" -  " + ie);
-      no++;
-     }
-    }
-   }
+   PackManager.v().getPack("jtp").add(new Transform("jtp.fixedie", new BodyTransformer() {
+      @Override
+      protected void internalTransform(Body body, String phaseName, Map<String, String> options) {
+        for (Unit this_unit : body.getUnits()) {
+            Stmt this_statement = (Stmt) this_unit;
+            if (this_statement.containsInvokeExpr()) {
+               InvokeExpr invoke_expression = this_statement.getInvokeExpr();
+               if (FixedMethods.isFixed(invoke_expression)) {
+                  System.err.println("+++ " + invoke_expression);
+                  yes++;
+              } else {
+                  System.err.println(" -  " + invoke_expression);
+                  no++;
+              }
+          }
+      }
   }
- }));
- soot.Main.main(args);
- System.err.println("+++ " + yes);
- System.err.println(" -  " + no);
+}));
+   soot.Main.main(args);
+   System.err.println("+++ " + yes);
+   System.err.println(" -  " + no);
 }
