@@ -1,0 +1,5 @@
+javac Main.java FixedMethods.java TestDominatorFinder.java DominatorFinder.java -cp ../JarLibraries/*
+
+java -cp "..\\JarLibraries\\*;" Main -allow-phantom-refs -android-jars ..\\Android/platforms -android-api-version 28 -src-prec apk -output-format dex -force-overwrite -output-dir "OutputJimple" -process-dir "..\APK\SimpleAd.apk"  -process-multiple-dex -w -p db.transformations enabled:true
+
+java -cp "..\\JarLibraries\\*;" TestDominatorFinder -allow-phantom-refs -android-jars ..\\Android/platforms -android-api-version 28 -src-prec apk -output-format dex -force-overwrite -output-dir "OutputJimple" -process-dir "..\APK\SimpleAd.apk"  -process-multiple-dex -w -p db.transformations enabled:true
